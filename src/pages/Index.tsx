@@ -2,7 +2,14 @@
 import { Link } from "react-router-dom";
 import Container from "@/components/ui/Container";
 import { Button } from "@/components/ui/button";
-import { Laptop, BookOpen, Users, Layout } from "lucide-react";
+import { 
+  BookOpen, 
+  Users, 
+  UserCheck, 
+  Calendar, 
+  BookUser, 
+  UserPlus 
+} from "lucide-react";
 
 const Index = () => {
   return (
@@ -13,31 +20,30 @@ const Index = () => {
           <Container>
             <div className="max-w-3xl mx-auto text-center animate-slide-up">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                The Modern Learning Management System
+                LMS Galaxy: Transforming Education
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
-                Streamlined education platform for students and administrators.
-                Simple, intuitive, and designed with purpose.
+                An innovative learning platform that connects students, instructors, and administrators seamlessly.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="h-12 px-8">
-                  <Link to="/register">Get Started</Link>
+                  <Link to="/register">Start Learning</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="h-12 px-8">
-                  <Link to="/courses">Browse Courses</Link>
+                  <Link to="/courses">Explore Courses</Link>
                 </Button>
               </div>
             </div>
           </Container>
         </section>
 
-        {/* Features Section */}
+        {/* Key Features Section */}
         <section className="py-20">
           <Container>
             <div className="text-center mb-16 animate-fade-in">
-              <h2 className="text-3xl font-bold mb-4">Designed for Learning</h2>
+              <h2 className="text-3xl font-bold mb-4">Powerful Learning Ecosystem</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Our platform focuses on what matters most - the educational experience.
+                Designed to empower learning through technology, collaboration, and personalized experiences.
               </p>
             </div>
 
@@ -45,29 +51,44 @@ const Index = () => {
               <FeatureCard
                 icon={<BookOpen className="h-10 w-10" />}
                 title="Comprehensive Courses"
-                description="Access a wide range of well-structured courses designed to maximize learning outcomes."
+                description="Access a diverse range of courses from expert instructors across multiple disciplines."
               />
               <FeatureCard
                 icon={<Users className="h-10 w-10" />}
-                title="User Management"
-                description="Administrators can easily manage students, instructors, and course enrollments."
+                title="Collaborative Learning"
+                description="Engage with peers, participate in discussions, and learn together in a vibrant community."
               />
               <FeatureCard
-                icon={<Layout className="h-10 w-10" />}
-                title="Intuitive Dashboard"
-                description="Clean, focused dashboards that provide just what you need without unnecessary complexity."
+                icon={<UserCheck className="h-10 w-10" />}
+                title="Progress Tracking"
+                description="Monitor your learning journey with detailed progress analytics and performance insights."
+              />
+              <FeatureCard
+                icon={<Calendar className="h-10 w-10" />}
+                title="Flexible Scheduling"
+                description="Learn at your own pace with on-demand courses and live interactive sessions."
+              />
+              <FeatureCard
+                icon={<BookUser className="h-10 w-10" />}
+                title="Expert Instructors"
+                description="Learn from industry professionals and experienced educators passionate about teaching."
+              />
+              <FeatureCard
+                icon={<UserPlus className="h-10 w-10" />}
+                title="Easy Enrollment"
+                description="Quick and simple course registration with transparent pricing and multiple payment options."
               />
             </div>
           </Container>
         </section>
 
-        {/* CTA Section */}
+        {/* Call to Action Section */}
         <section className="py-20 bg-primary text-primary-foreground">
           <Container>
             <div className="max-w-3xl mx-auto text-center animate-fade-in">
-              <h2 className="text-3xl font-bold mb-6">Ready to Transform Learning?</h2>
+              <h2 className="text-3xl font-bold mb-6">Ready to Unlock Your Potential?</h2>
               <p className="text-xl mb-8 text-primary-foreground/80">
-                Join our platform today and experience education designed with purpose.
+                Join thousands of learners transforming their careers through continuous education.
               </p>
               <Button
                 asChild
@@ -75,7 +96,7 @@ const Index = () => {
                 size="lg"
                 className="h-12 px-8 bg-white text-primary hover:bg-white/90"
               >
-                <Link to="/register">Create Account</Link>
+                <Link to="/register">Create Your Account</Link>
               </Button>
             </div>
           </Container>
@@ -87,11 +108,11 @@ const Index = () => {
         <Container>
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <Laptop className="h-5 w-5" />
-              <span className="font-semibold">LMS Portal</span>
+              <BookOpen className="h-5 w-5" />
+              <span className="font-semibold">LMS Galaxy</span>
             </div>
             <div className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} LMS Portal. All rights reserved.
+              © {new Date().getFullYear()} LMS Galaxy. All rights reserved.
             </div>
           </div>
         </Container>

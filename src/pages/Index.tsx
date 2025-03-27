@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import Container from "@/components/ui/Container";
 import { Button } from "@/components/ui/button";
@@ -10,6 +9,7 @@ import {
   BookUser, 
   UserPlus 
 } from "lucide-react";
+import TestConnection from "@/components/TestConnection";
 
 const Index = () => {
   return (
@@ -33,6 +33,15 @@ const Index = () => {
                   <Link to="/courses">Explore Courses</Link>
                 </Button>
               </div>
+            </div>
+          </Container>
+        </section>
+
+        {/* Test Connection Section */}
+        <section className="py-12">
+          <Container>
+            <div className="max-w-md mx-auto">
+              <TestConnection />
             </div>
           </Container>
         </section>

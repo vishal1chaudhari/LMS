@@ -6,8 +6,7 @@ import {
   Users, 
   UserCheck, 
   Calendar, 
-  BookUser, 
-  UserPlus 
+  BookUser
 } from "lucide-react";
 import TestConnection from "@/components/TestConnection";
 
@@ -26,11 +25,11 @@ const Index = () => {
                 An innovative learning platform that connects students, instructors, and administrators seamlessly.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg" className="h-12 px-8">
-                  <Link to="/register">Start Learning</Link>
-                </Button>
                 <Button asChild size="lg" variant="outline" className="h-12 px-8">
                   <Link to="/courses">Explore Courses</Link>
+                </Button>
+                <Button asChild size="lg" className="h-12 px-8">
+                  <Link to="/login">Sign In</Link>
                 </Button>
               </div>
             </div>
@@ -49,43 +48,38 @@ const Index = () => {
         {/* Key Features Section */}
         <section className="py-20">
           <Container>
-            <div className="text-center mb-16 animate-fade-in">
-              <h2 className="text-3xl font-bold mb-4">Powerful Learning Ecosystem</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Designed to empower learning through technology, collaboration, and personalized experiences.
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Key Features</h2>
+              <p className="text-xl text-muted-foreground">
+                Everything you need to succeed in your learning journey
               </p>
             </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <FeatureCard
                 icon={<BookOpen className="h-10 w-10" />}
                 title="Comprehensive Courses"
-                description="Access a diverse range of courses from expert instructors across multiple disciplines."
+                description="Access a wide range of courses designed by industry experts and experienced educators."
               />
               <FeatureCard
                 icon={<Users className="h-10 w-10" />}
-                title="Collaborative Learning"
-                description="Engage with peers, participate in discussions, and learn together in a vibrant community."
+                title="Expert Instructors"
+                description="Learn from professionals with real-world experience in their respective fields."
               />
               <FeatureCard
                 icon={<UserCheck className="h-10 w-10" />}
-                title="Progress Tracking"
-                description="Monitor your learning journey with detailed progress analytics and performance insights."
+                title="Interactive Learning"
+                description="Engage with course content through quizzes, assignments, and interactive discussions."
               />
               <FeatureCard
                 icon={<Calendar className="h-10 w-10" />}
-                title="Flexible Scheduling"
-                description="Learn at your own pace with on-demand courses and live interactive sessions."
+                title="Flexible Schedule"
+                description="Learn at your own pace with 24/7 access to course materials and resources."
               />
               <FeatureCard
                 icon={<BookUser className="h-10 w-10" />}
-                title="Expert Instructors"
-                description="Learn from industry professionals and experienced educators passionate about teaching."
-              />
-              <FeatureCard
-                icon={<UserPlus className="h-10 w-10" />}
-                title="Easy Enrollment"
-                description="Quick and simple course registration with transparent pricing and multiple payment options."
+                title="Progress Tracking"
+                description="Monitor your learning progress with detailed analytics and performance insights."
               />
             </div>
           </Container>
@@ -105,7 +99,7 @@ const Index = () => {
                 size="lg"
                 className="h-12 px-8 bg-white text-primary hover:bg-white/90"
               >
-                <Link to="/register">Create Your Account</Link>
+                <Link to="/login">Sign In Now</Link>
               </Button>
             </div>
           </Container>
@@ -130,22 +124,12 @@ const Index = () => {
   );
 };
 
-const FeatureCard = ({ 
-  icon, 
-  title, 
-  description 
-}: { 
-  icon: React.ReactNode; 
-  title: string; 
-  description: string; 
-}) => {
-  return (
-    <div className="bg-card rounded-xl p-8 shadow-sm border border-border/50 animate-fade-in card-hover">
-      <div className="mb-4 text-primary">{icon}</div>
-      <h3 className="text-xl font-semibold mb-3">{title}</h3>
-      <p className="text-muted-foreground">{description}</p>
-    </div>
-  );
-};
+const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
+  <div className="p-6 bg-card rounded-lg shadow-sm hover:shadow-md transition-shadow">
+    <div className="text-primary mb-4">{icon}</div>
+    <h3 className="text-xl font-semibold mb-2">{title}</h3>
+    <p className="text-muted-foreground">{description}</p>
+  </div>
+);
 
 export default Index;

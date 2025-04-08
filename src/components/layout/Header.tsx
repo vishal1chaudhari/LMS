@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
@@ -77,14 +76,9 @@ const Header = () => {
                 </DropdownMenu>
               </>
             ) : (
-              <div className="flex space-x-4">
-                <Button variant="outline" asChild>
-                  <Link to="/login">Log in</Link>
-                </Button>
-                <Button asChild>
-                  <Link to="/register">Sign up</Link>
-                </Button>
-              </div>
+              <Button variant="outline" asChild>
+                <Link to="/login">Log in</Link>
+              </Button>
             )}
           </nav>
 
@@ -105,7 +99,7 @@ const Header = () => {
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <div className="md:hidden animate-slide-down">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 glassmorphism shadow-lg mx-4 my-2 rounded-lg">
+          <div className="px-2 pt-2 pb-3 space-y-1">
             <Link
               to="/courses"
               className="block px-3 py-2 rounded-md text-base font-medium hover:bg-accent"
@@ -136,22 +130,13 @@ const Header = () => {
                 </button>
               </>
             ) : (
-              <div className="space-y-2 pt-2">
-                <Link
-                  to="/login"
-                  className="block w-full px-3 py-2 rounded-md text-base font-medium bg-accent text-center"
-                  onClick={toggleMobileMenu}
-                >
-                  Log in
-                </Link>
-                <Link
-                  to="/register"
-                  className="block w-full px-3 py-2 rounded-md text-base font-medium bg-primary text-primary-foreground text-center"
-                  onClick={toggleMobileMenu}
-                >
-                  Sign up
-                </Link>
-              </div>
+              <Link
+                to="/login"
+                className="block w-full px-3 py-2 rounded-md text-base font-medium bg-accent text-center"
+                onClick={toggleMobileMenu}
+              >
+                Log in
+              </Link>
             )}
           </div>
         </div>

@@ -63,14 +63,14 @@ axios.interceptors.response.use(
 );
 
 export const login = async (credentials: LoginCredentials): Promise<AuthResponse> => {
-  const response = await axios.post(`${API_URL}/auth/login`, credentials);
+  const response = await axios.post(`${API_URL}/api/auth/login`, credentials);
   const { token, user } = response.data;
   setToken(token);
   return { token, user };
 };
 
 export const register = async (data: RegisterData): Promise<AuthResponse> => {
-  const response = await axios.post(`${API_URL}/auth/register`, data);
+  const response = await axios.post(`${API_URL}/api/users/register`, data);
   const { token, user } = response.data;
   setToken(token);
   return { token, user };
@@ -105,16 +105,16 @@ export const getCurrentUser = () => {
 
 // Admin functions
 export const getUsers = async () => {
-  const response = await axios.get(`${API_URL}/users`);
+  const response = await axios.get(`${API_URL}/api/users`);
   return response.data;
 };
 
 export const createUser = async (userData: RegisterData) => {
-  const response = await axios.post(`${API_URL}/users`, userData);
+  const response = await axios.post(`${API_URL}/api/users`, userData);
   return response.data;
 };
 
 export const deleteUser = async (userId: string) => {
-  const response = await axios.delete(`${API_URL}/users/${userId}`);
+  const response = await axios.delete(`${API_URL}/api/users/${userId}`);
   return response.data;
 }; 

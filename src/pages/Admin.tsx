@@ -29,10 +29,11 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Pencil, Plus, Trash2, Users, BookOpen } from "lucide-react";
+import { Pencil, Plus, Trash2, Users, BookOpen, UserPlus } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { courseService, Course } from "@/services/courseService";
+import StudentRegistration from "@/components/admin/StudentRegistration";
 
 const Admin = () => {
   const { user, isLoading } = useAuth();
@@ -152,36 +153,46 @@ const Admin = () => {
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-12">
-      <Container>
-        <header className="mb-10 animate-slide-down">
+    <Container>
+      <div className="space-y-6">
+        <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-          <p className="text-muted-foreground mt-2">
-            Manage your LMS portal, users, and courses.
-          </p>
-        </header>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <StatCard
             title="Total Courses"
             value={courses.length}
             icon={<BookOpen className="h-6 w-6" />}
-            description="Available courses"
+            description="Active courses in the system"
+          />
+          <StatCard
+            title="Total Students"
+            value={0}
+            icon={<Users className="h-6 w-6" />}
+            description="Enrolled students"
+          />
+          <StatCard
+            title="Total Revenue"
+            value={0}
+            icon={<Users className="h-6 w-6" />}
+            description="Total revenue from courses"
           />
         </div>
 
-        <Tabs defaultValue="courses" className="space-y-6">
+        <Tabs defaultValue="courses" className="space-y-4">
           <TabsList>
             <TabsTrigger value="courses">Courses</TabsTrigger>
+            <TabsTrigger value="students">Students</TabsTrigger>
           </TabsList>
-
-          <TabsContent value="courses" className="space-y-6">
+          
+          <TabsContent value="courses" className="space-y-4">
             <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold">Courses</h2>
+              <h2 className="text-2xl font-bold">Manage Courses</h2>
               <Dialog open={addCourseDialogOpen} onOpenChange={setAddCourseDialogOpen}>
                 <DialogTrigger asChild>
                   <Button>
-                    <Plus className="h-4 w-4 mr-2" />
+                    <Plus className="mr-2 h-4 w-4" />
                     Add Course
                   </Button>
                 </DialogTrigger>
@@ -235,7 +246,7 @@ const Admin = () => {
                 </DialogContent>
               </Dialog>
             </div>
-
+            
             <Card>
               <CardContent className="p-0">
                 <Table>
@@ -271,9 +282,33 @@ const Admin = () => {
               </CardContent>
             </Card>
           </TabsContent>
+          
+          <TabsContent value="students" className="space-y-4">
+            <div className="flex justify-between items-center">
+              <h2 className="text-2xl font-bold">Manage Students</h2>
+            </div>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle>Register New Student</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <StudentRegistration />
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle>Student List</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">Student management functionality coming soon.</p>
+              </CardContent>
+            </Card>
+          </TabsContent>
         </Tabs>
-      </Container>
-    </div>
+      </div>
+    </Container>
   );
 };
 

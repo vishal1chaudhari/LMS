@@ -15,10 +15,10 @@ const UserManager: React.FC = () => {
   const [error, setError] = useState<string>('');
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: '',
+    name: '',
     email: '',
     password: '',
-    role: 'student'
+    role: 'Student' as 'Student' | 'Instructor' | 'Admin'
   });
 
   useEffect(() => {
@@ -44,10 +44,10 @@ const UserManager: React.FC = () => {
       setUsers([...users, newUser]);
       setShowForm(false);
       setFormData({
-        fullName: '',
+        name: '',
         email: '',
         password: '',
-        role: 'student'
+        role: 'Student' as 'Student' | 'Instructor' | 'Admin'
       });
     } catch (err: any) {
       setError(err.response?.data?.message || 'Failed to create user');
@@ -88,16 +88,16 @@ const UserManager: React.FC = () => {
       {showForm && (
         <form onSubmit={handleSubmit} className="space-y-4 bg-white p-4 rounded-md shadow">
           <div>
-            <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
               Full Name
             </label>
             <input
               type="text"
-              id="fullName"
+              id="name"
               required
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              value={formData.fullName}
-              onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             />
           </div>
           <div>
@@ -135,10 +135,11 @@ const UserManager: React.FC = () => {
               required
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
               value={formData.role}
-              onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+              onChange={(e) => setFormData({ ...formData, role: e.target.value as 'Student' | 'Instructor' | 'Admin' })}
             >
-              <option value="student">Student</option>
-              <option value="instructor">Instructor</option>
+              <option value="Student">Student</option>
+              <option value="Instructor">Instructor</option>
+              <option value="Admin">Admin</option>
             </select>
           </div>
           <button

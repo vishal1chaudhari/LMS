@@ -16,7 +16,9 @@ const ModuleManager: React.FC<ModuleManagerProps> = ({ courseId, onModuleSelect 
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    order: 0
+    order: 0,
+    estimatedDuration: '',
+    status: 'Draft' as 'Draft' | 'Published'
   });
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const ModuleManager: React.FC<ModuleManagerProps> = ({ courseId, onModuleSelect 
       });
       setModules([...modules, newModule]);
       setShowForm(false);
-      setFormData({ title: '', description: '', order: 0 });
+      setFormData({ title: '', description: '', order: 0, estimatedDuration: '', status: 'Draft' });
     } catch (err: any) {
       setError(err.response?.data?.message || 'Failed to create module');
     }
@@ -125,6 +127,36 @@ const ModuleManager: React.FC<ModuleManagerProps> = ({ courseId, onModuleSelect 
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
             />
           </div>
+          <div>
+            <label htmlFor="estimatedDuration" className="block text-sm font-medium text-gray-700">
+              Estimated Duration (hours)
+            </label>
+            <input
+              type="number"
+              id="estimatedDuration"
+              required
+              min="0.5"
+              step="0.5"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              value={formData.estimatedDuration}
+              onChange={(e) => setFormData({ ...formData, estimatedDuration: e.target.value })}
+            />
+          </div>
+          <div>
+            <label htmlFor="status" className="block text-sm font-medium text-gray-700">
+              Status
+            </label>
+            <select
+              id="status"
+              required
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              value={formData.status}
+              onChange={(e) => setFormData({ ...formData, status: e.target.value as 'Draft' | 'Published' })}
+            >
+              <option value="Draft">Draft</option>
+              <option value="Published">Published</option>
+            </select>
+          </div>
           <button
             type="submit"
             className="w-full px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
@@ -159,6 +191,16 @@ const ModuleManager: React.FC<ModuleManagerProps> = ({ courseId, onModuleSelect 
                         <div>
                           <h3 className="text-lg font-medium">{module.title}</h3>
                           <p className="text-gray-600">{module.description}</p>
+                          <div className="mt-2 flex items-center space-x-4 text-sm text-gray-500">
+                            <span>Duration: {module.estimatedDuration} hours</span>
+                            <span className={`px-2 py-1 rounded-full text-xs ${
+                              module.status === 'Published' 
+                                ? 'bg-green-100 text-green-800' 
+                                : 'bg-yellow-100 text-yellow-800'
+                            }`}>
+                              {module.status}
+                            </span>
+                          </div>
                         </div>
                         <div className="flex space-x-2">
                           <button

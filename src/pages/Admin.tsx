@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Pencil, Plus, Trash2, Users, BookOpen, UserPlus } from "lucide-react";
+import { Pencil, Plus, Trash2, Users, BookOpen, UserPlus, FileText } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { courseService, Course } from "@/services/courseService";
@@ -267,13 +267,24 @@ const Admin = () => {
                         <TableCell>{course.students}</TableCell>
                         <TableCell>{course.status}</TableCell>
                         <TableCell>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() => handleDeleteCourse(course._id)}
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
+                          <div className="flex space-x-2">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              onClick={() => navigate(`/admin/courses/${course._id}/content`)}
+                              title="Manage Content"
+                            >
+                              <FileText className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              onClick={() => handleDeleteCourse(course._id)}
+                              title="Delete Course"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
                         </TableCell>
                       </TableRow>
                     ))}

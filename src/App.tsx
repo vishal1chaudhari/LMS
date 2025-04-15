@@ -9,6 +9,7 @@ import Index from "@/pages/Index";
 import Login from "@/pages/Login";
 import Dashboard from "@/pages/Dashboard";
 import Admin from "@/pages/Admin";
+import CourseContentManager from "@/pages/admin/CourseContentManager";
 import Courses from "@/pages/Courses";
 import CourseDetail from "@/pages/CourseDetail";
 import NotFound from "@/pages/NotFound";
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/courses/:courseId/content" element={<CourseContentManager />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/courses/:id" element={<CourseDetail />} />
             <Route path="*" element={<NotFound />} />

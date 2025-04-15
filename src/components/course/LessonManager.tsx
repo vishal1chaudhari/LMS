@@ -26,7 +26,9 @@ const LessonManager: React.FC<LessonManagerProps> = ({ moduleId, onLessonSelect 
     content: '',
     type: 'Text' as const,
     duration: '',
-    order: 0
+    order: 0,
+    videoUrl: '',
+    status: 'Draft' as 'Draft' | 'Published'
   });
 
   useEffect(() => {
@@ -59,7 +61,9 @@ const LessonManager: React.FC<LessonManagerProps> = ({ moduleId, onLessonSelect 
         content: '',
         type: 'Text',
         duration: '',
-        order: 0
+        order: 0,
+        videoUrl: '',
+        status: 'Draft'
       });
     } catch (err: any) {
       setError(err.response?.data?.message || 'Failed to create lesson');
@@ -165,17 +169,64 @@ const LessonManager: React.FC<LessonManagerProps> = ({ moduleId, onLessonSelect 
               onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Content</label>
-            <div className="mt-1">
-              <ReactQuill
-                theme="snow"
-                value={formData.content}
-                onChange={(content) => setFormData({ ...formData, content })}
-                className="h-64 mb-12"
+          {formData.type === 'Video' && (
+            <div>
+              <label htmlFor="videoUrl" className="block text-sm font-medium text-gray-700">
+                Video URL
+              </label>
+              <input
+                type="url"
+                id="videoUrl"
+                required
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                value={formData.videoUrl}
+                onChange={(e) => setFormData({ ...formData, videoUrl: e.target.value })}
+                placeholder="https://www.youtube.com/watch?v=..."
               />
             </div>
+          )}
+          <div>
+            <label htmlFor="status" className="block text-sm font-medium text-gray-700">
+              Status
+            </label>
+            <select
+              id="status"
+              required
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              value={formData.status}
+              onChange={(e) => setFormData({ ...formData, status: e.target.value as 'Draft' | 'Published' })}
+            >
+              <option value="Draft">Draft</option>
+              <option value="Published">Published</option>
+            </select>
           </div>
+          {formData.type === 'Text' && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Content</label>
+              <div className="mt-1">
+                <ReactQuill
+                  theme="snow"
+                  value={formData.content}
+                  onChange={(content) => setFormData({ ...formData, content })}
+                  className="h-64 mb-12"
+                />
+              </div>
+            </div>
+          )}
+          {formData.type === 'Video' && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Description</label>
+              <div className="mt-1">
+                <ReactQuill
+                  theme="snow"
+                  value={formData.content}
+                  onChange={(content) => setFormData({ ...formData, content })}
+                  className="h-32 mb-12"
+                  placeholder="Add a description or transcript for the video..."
+                />
+              </div>
+            </div>
+          )}
           <button
             type="submit"
             className="w-full px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
